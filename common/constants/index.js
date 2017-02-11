@@ -1,4 +1,9 @@
 
+export const Style = {
+  PrimaryColor: 'blue',
+  BackgroundColor: 'red',
+}
+
 export const Caption = {
   BackgroundColor: 'red',
   FontSize: 20,
