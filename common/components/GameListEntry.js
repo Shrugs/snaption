@@ -26,7 +26,7 @@ class GameListEntry extends Component {
           <View style={styles.imageContainer}>
             <Image
               style={styles.groupImage}
-              source={{ uri: 'https://placekitten.com/1000/1500' }}
+              source={{ uri: 'https://placekitten.com/1000/1000' }}
             />
           </View>
           <View style={styles.detailsContainer}>

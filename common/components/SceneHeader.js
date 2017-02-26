@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 
+import EStyleSheet from 'react-native-extended-stylesheet'
+
 import {
-  StyleSheet,
   View,
   Text,
+  Image
 } from 'react-native'
 
 import {
@@ -14,6 +16,7 @@ class SceneHeader extends Component {
 
   static propTypes = {
     title: React.PropTypes.string.isRequired,
+    image: React.PropTypes.string,
   }
 
   render() {
@@ -21,10 +24,20 @@ class SceneHeader extends Component {
       <View style={styles.header}>
         <View style={styles.container}>
           <View style={styles.textSpacer} />
-          <View style={styles.textContainer}>
-            <Text style={styles.headerText}>
-              {this.props.title}
-            </Text>
+          <View style={styles.contentContainer}>
+              {this.props.image &&
+                <View style={styles.contentRow}>
+                  <Image
+                    style={styles.groupImage}
+                    source={{ uri: this.props.image }}
+                  />
+                </View>
+              }
+            <View style={styles.contentRow}>
+              <Text style={styles.headerText}>
+                {this.props.title}
+              </Text>
+            </View>
           </View>
           <View style={styles.textSpacer} />
         </View>
@@ -33,7 +46,8 @@ class SceneHeader extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
+  $imageSize: 70,
   header: {
     height: cSceneHeader.Height,
   },
@@ -41,13 +55,17 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
+  contentRow: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   textSpacer: {
     flex: 15,
   },
-  textContainer: {
+  contentContainer: {
     flex: 70,
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: 'column',
     borderBottomColor: cSceneHeader.BorderColor,
     borderBottomWidth: 1,
   },
@@ -55,6 +73,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: cSceneHeader.FontSize,
     color: cSceneHeader.FontColor,
+  },
+  groupImage: {
+    height: '$imageSize',
+    width: '$imageSize',
+    borderRadius: '0.5 * $imageSize',
   },
 })
 
